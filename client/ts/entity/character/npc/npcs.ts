@@ -1,5 +1,5 @@
 import {Npc} from './npc';
-import {Types} from '../../../../../shared/ts/gametypes';
+import {Types} from '../../../gametypes';
 
 export const NPCs = {
 

@@ -1,5 +1,5 @@
 import {log} from '../lib/log';
-import {Types} from '../../../shared/ts/gametypes';
+import {Types} from './../gametypes';
 
 export class Entity {
 
@@ -61,7 +61,7 @@ export class Entity {
 
   setSprite(sprite) {
     if (!sprite) {
-      log.error(this.id + ' : sprite is null', true);
+      console.log(this.id + ' : sprite is null', true);
       throw 'Error';
     }
 
@@ -99,7 +99,7 @@ export class Entity {
       animation = this.animations[name];
     }
     else {
-      log.error('No animation called ' + name);
+      console.log('No animation called ' + name);
     }
     return animation;
   }
@@ -148,11 +148,11 @@ export class Entity {
   }
 
   log_info(message) {
-    log.info('[' + this.id + '] ' + message);
+    console.info('[' + this.id + '] ' + message);
   }
 
   log_error(message) {
-    log.error('[' + this.id + '] ' + message);
+    console.log('[' + this.id + '] ' + message);
   }
 
   setHighlight(value) {

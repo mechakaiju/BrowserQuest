@@ -165,7 +165,7 @@ var initApp = function () {
     $('#resize-check').bind('webkitTransitionEnd', app.resizeUi.bind(app));
     $('#resize-check').bind('oTransitionEnd', app.resizeUi.bind(app));
 
-    log.info('App initialized.');
+    console.info('App initialized.');
 
     initGame();
   });
@@ -325,11 +325,10 @@ var initGame = function () {
   $('#chatinput').keydown(function (e) {
     var key = e.which,
       $chat = $('#chatinput');
-
     if (key === 13) {
       if ($chat.attr('value') !== '') {
         if (game.player) {
-          game.say($chat.attr('value'));
+          game.say($chat.val());
         }
         $chat.attr('value', '');
         app.hideChat();

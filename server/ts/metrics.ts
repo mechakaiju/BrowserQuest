@@ -18,7 +18,7 @@ export class Metrics {
 
 
     this.client.on('connect', function () {
-      log.info('Metrics enabled: memcached client connected to ' + config.memcached_host + ':' + config.memcached_port);
+      console.info('Metrics enabled: memcached client connected to ' + config.memcached_host + ':' + config.memcached_port);
       self.isReady = true;
       if (self.ready_callback) {
         self.ready_callback();
@@ -61,7 +61,7 @@ export class Metrics {
         });
       });
     } else {
-      log.error('Memcached client not connected');
+      console.log('Memcached client not connected');
     }
   }
 

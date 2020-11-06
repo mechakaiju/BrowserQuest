@@ -1,5 +1,5 @@
 import {Item} from './item';
-import {Types} from '../../../../shared/ts/gametypes';
+import {Types} from '../../gametypes';
 
 export class Chest extends Item {
 

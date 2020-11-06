@@ -107,7 +107,7 @@ export class Map {
           tileIndex += 1;
         }
       }
-      //log.info("Collision grid generated.");
+      console.info("Collision grid generated.");
     }
   }
 

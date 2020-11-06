@@ -48,7 +48,7 @@ export class Player extends Character {
     this.connection.listen(function (message) {
       var action = parseInt(message[0]);
 
-      log.debug('Received: ' + message);
+      console.log('Received: ' + message);
       if (!self.formatChecker.check(message)) {
         self.connection.close('Invalid ' + Types.getMessageTypeAsString(action) + ' message format: ' + message);
         return;
@@ -96,7 +96,6 @@ export class Player extends Character {
       }
       else if (action === Types.Messages.CHAT) {
         var msg = Utils.sanitize(message[1]);
-
         // Sanitized messages may become empty. No need to broadcast empty chat messages.
         if (msg && msg !== '') {
           msg = msg.substr(0, 60); // Enforce maxlength of chat input
@@ -365,7 +364,7 @@ export class Player extends Character {
 
   equipItem(item) {
     if (item) {
-      log.debug(this.name + ' equips ' + Types.getKindAsString(item.kind));
+      console.log(this.name + ' equips ' + Types.getKindAsString(item.kind));
 
       if (Types.isArmor(item.kind)) {
         this.equipArmor(item.kind);

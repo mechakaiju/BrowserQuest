@@ -1,7 +1,7 @@
 import {Game} from '../game';
 import {Timer} from '../utils/timer';
 import {Character} from '../entity/character/character';
-import {Types} from '../../../shared/ts/gametypes';
+import {Types} from '../gametypes';
 
 export class Updater {
 

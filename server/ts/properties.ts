@@ -158,7 +158,7 @@ export const Properties = {
         return Types.getArmorRank(kind) + 1;
       }
     } catch (e) {
-      log.error('No level found for armor: ' + Types.getKindAsString(kind));
+      console.log('No level found for armor: ' + Types.getKindAsString(kind));
     }
   },
   getWeaponLevel: kind => {
@@ -169,7 +169,7 @@ export const Properties = {
         return Types.getWeaponRank(kind) + 1;
       }
     } catch (e) {
-      log.error('No level found for weapon: ' + Types.getKindAsString(kind));
+      console.log('No level found for weapon: ' + Types.getKindAsString(kind));
     }
   },
   getHitPoints: kind => {

@@ -29,8 +29,8 @@ Logger.prototype.error = function(message, stacktrace) {
         console.error(message);
         if(stacktrace !== undefined && stacktrace === true) {
             var trace = printStackTrace();
-            console.error(trace.join('\n\n'));
-            console.error('-----------------------------');
+            console.log(trace.join('\n\n'));
+            console.log('-----------------------------');
         }
     }
 };

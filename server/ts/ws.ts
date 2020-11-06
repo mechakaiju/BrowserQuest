@@ -139,7 +139,7 @@ export class Connection {
   }
 
   close(logError) {
-    log.info('Closing connection to ' + this._connection.remoteAddress + '. Error: ' + logError);
+    console.info('Closing connection to ' + this._connection.remoteAddress + '. Error: ' + logError);
     this._connection.disconnect();
   }
 }

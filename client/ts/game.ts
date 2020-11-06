@@ -2,7 +2,7 @@ import {App} from './app';
 import {Warrior} from './entity/character/player/classes/warrior';
 import {BubbleManager} from './interface/bubble.manager';
 import {log} from './lib/log';
-import {Types} from '../../shared/ts/gametypes';
+import {Types} from './gametypes';
 import {Animation} from './animation';
 import {Sprite} from './renderer/sprite';
 import Map from './map/map';
@@ -172,7 +172,7 @@ export class Game {
 
 
     this.map.ready(function () {
-      log.info('Map loaded.');
+      console.info('Map loaded.');
       var tilesetIndex = self.renderer.upscaledRendering ? 0 : self.renderer.scale - 1;
       self.renderer.setTileset(self.map.tilesets[tilesetIndex]);
     });
@@ -293,7 +293,7 @@ export class Game {
   }
 
   loadSprites() {
-    log.info('Loading sprites...');
+    console.info('Loading sprites...');
     this.spritesets = [];
     this.spritesets[0] = {};
     this.spritesets[1] = {};
@@ -315,7 +315,7 @@ export class Game {
       this.currentCursor = this.cursors[name];
       this.currentCursorOrientation = orientation;
     } else {
-      log.error('Unknown cursor name :' + name);
+      console.log('Unknown cursor name :' + name);
     }
   }
 
@@ -375,7 +375,7 @@ export class Game {
       }
     }
     else {
-      log.error('This entity already exists : ' + entity.id + ' (' + entity.kind + ')');
+      console.log('This entity already exists : ' + entity.id + ' (' + entity.kind + ')');
     }
   }
 
@@ -385,7 +385,7 @@ export class Game {
       delete this.entities[entity.id];
     }
     else {
-      log.error('Cannot remove entity. Unknown ID : ' + entity.id);
+      console.log('Cannot remove entity. Unknown ID : ' + entity.id);
     }
   }
 
@@ -402,7 +402,7 @@ export class Game {
       this.removeFromRenderingGrid(item, item.gridX, item.gridY);
       delete this.entities[item.id];
     } else {
-      log.error('Cannot remove item. Unknown ID : ' + item.id);
+      console.log('Cannot remove item. Unknown ID : ' + item.id);
     }
   }
 
@@ -414,7 +414,7 @@ export class Game {
         this.pathingGrid[i][j] = this.map.grid[i][j];
       }
     }
-    log.info('Initialized the pathing grid with static colliding cells.');
+    console.info('Initialized the pathing grid with static colliding cells.');
   }
 
   initEntityGrid() {
@@ -425,7 +425,7 @@ export class Game {
         this.entityGrid[i][j] = {};
       }
     }
-    log.info('Initialized the entity grid.');
+    console.info('Initialized the entity grid.');
   }
 
   initRenderingGrid() {
@@ -436,7 +436,7 @@ export class Game {
         this.renderingGrid[i][j] = {};
       }
     }
-    log.info('Initialized the rendering grid.');
+    console.info('Initialized the rendering grid.');
   }
 
   initItemGrid() {
@@ -447,7 +447,7 @@ export class Game {
         this.itemGrid[i][j] = {};
       }
     }
-    log.info('Initialized the item grid.');
+    console.info('Initialized the item grid.');
   }
 
   /**
@@ -468,7 +468,7 @@ export class Game {
         self.animatedTiles.push(tile);
       }
     }, 1);
-    //log.info("Initialized animated tiles.");
+    console.info("Initialized animated tiles.");
   }
 
   addToRenderingGrid(entity, x, y) {
@@ -639,11 +639,11 @@ export class Game {
   start() {
     this.tick();
     this.hasNeverStarted = false;
-    log.info('Game loop started.');
+    console.info('Game loop started.');
   }
 
   stop() {
-    log.info('Game stopped.');
+    console.info('Game stopped.');
     this.isStopped = true;
   }
 
@@ -656,7 +656,7 @@ export class Game {
       return this.entities[id];
     }
     else {
-      log.error('Unknown entity id : ' + id, true);
+      console.log('Unknown entity id : ' + id, true);
     }
   }
 
@@ -689,7 +689,7 @@ export class Game {
     });
 
     this.client.onConnected(function () {
-      log.info('Starting client/server handshake');
+      console.info('Starting client/server handshake');
 
       self.player.name = self.username;
       self.started = true;
@@ -716,7 +716,7 @@ export class Game {
     });
 
     this.client.onWelcome(function (id, name, x, y, hp) {
-      log.info('Received player ID from server : ' + id);
+      console.info('Received player ID from server : ' + id);
       self.player.id = id;
       self.playerId = id;
       // Always accept name received from the server which will
@@ -969,12 +969,12 @@ export class Game {
       });
 
       self.player.onDeath(function () {
-        log.info(self.playerId + ' is dead');
+        console.info(self.playerId + ' is dead');
 
         self.player.stopBlinking();
         self.player.setSprite(self.sprites['death']);
         self.player.animate('death', 120, 1, function () {
-          log.info(self.playerId + ' was removed');
+          console.info(self.playerId + ' was removed');
 
           self.removeEntity(self.player);
           self.removeFromRenderingGrid(self.player, self.player.gridX, self.player.gridY);
@@ -1019,12 +1019,12 @@ export class Game {
       });
 
       self.client.onSpawnItem(function (item, x, y) {
-        log.info('Spawned ' + Types.getKindAsString(item.kind) + ' (' + item.id + ') at ' + x + ', ' + y);
+        console.info('Spawned ' + Types.getKindAsString(item.kind) + ' (' + item.id + ') at ' + x + ', ' + y);
         self.addItem(item, x, y);
       });
 
       self.client.onSpawnChest(function (chest, x, y) {
-        log.info('Spawned chest (' + chest.id + ') at ' + x + ', ' + y);
+        console.info('Spawned chest (' + chest.id + ') at ' + x + ', ' + y);
         chest.setSprite(self.sprites[chest.getSpriteName()]);
         chest.setGridPosition(x, y);
         chest.setAnimation('idle_down', 150);
@@ -1034,7 +1034,7 @@ export class Game {
           chest.stopBlinking();
           chest.setSprite(self.sprites['death']);
           chest.setAnimation('death', 120, 1, function () {
-            log.info(chest.id + ' was removed');
+            console.info(chest.id + ' was removed');
             self.removeEntity(chest);
             self.removeFromRenderingGrid(chest, chest.gridX, chest.gridY);
             self.previousClickPosition = {};
@@ -1124,7 +1124,7 @@ export class Game {
                 });
 
                 entity.onDeath(function () {
-                  log.info(entity.id + ' is dead');
+                  console.info(entity.id + ' is dead');
 
                   if (entity instanceof Mob) {
                     // Keep track of where mobs die in order to spawn their dropped items
@@ -1135,7 +1135,7 @@ export class Game {
                   entity.isDying = true;
                   entity.setSprite(self.sprites[entity instanceof Mobs.Rat ? 'rat' : 'death']);
                   entity.animate('death', 120, 1, function () {
-                    log.info(entity.id + ' was removed');
+                    console.info(entity.id + ' was removed');
 
                     self.removeEntity(entity);
                     self.removeFromRenderingGrid(entity, entity.gridX, entity.gridY);
@@ -1178,7 +1178,7 @@ export class Game {
             }
           }
           catch (e) {
-            log.error(e);
+            console.log(e);
           }
         } else {
           log.debug('Character ' + entity.id + ' already exists. Dont respawn.');
@@ -1189,7 +1189,7 @@ export class Game {
         var entity = self.getEntityById(entityId);
 
         if (entity) {
-          log.info('Despawning ' + Types.getKindAsString(entity.kind) + ' (' + entity.id + ')');
+          console.info('Despawning ' + Types.getKindAsString(entity.kind) + ' (' + entity.id + ')');
 
           if (entity.gridX === self.previousClickPosition.x
             && entity.gridY === self.previousClickPosition.y) {
@@ -1791,7 +1791,7 @@ export class Game {
         this.pathfinder.clearIgnoreList();
       }
     } else {
-      log.error('Error while finding the path to ' + x + ', ' + y + ' for ' + character.id);
+      console.log('Error while finding the path to ' + x + ', ' + y + ' for ' + character.id);
     }
     return path;
   }

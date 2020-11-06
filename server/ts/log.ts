@@ -4,15 +4,15 @@ export let log;
 
 switch (process.env.ERROR_LEVEL) {
   case 'error':
-    log = new Log(Log.ERROR);
+    //log = new Log(Log.ERROR);
     break;
   case 'debug':
-    log = new Log(Log.DEBUG);
+    //log = new Log(Log.DEBUG);
     break;
   case 'info':
-    log = new Log(Log.INFO);
+    //log = new Log(Log.INFO);
     break;
   default:
-    log = new Log(Log.INFO);
+    //log = new Log(Log.INFO);
     break;
 }

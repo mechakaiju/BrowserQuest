@@ -4,7 +4,7 @@ import {Player} from '../entity/character/player/player';
 import {Camera} from './camera';
 import {log} from '../lib/log';
 import {Item} from '../entity/objects/item';
-import {Types} from '../../../shared/ts/gametypes';
+import {Types} from '../gametypes';
 import {Detect} from '../utils/detect';
 import * as _ from 'lodash';
 
@@ -325,7 +325,7 @@ export class Renderer {
     var s = this.upscaledRendering ? 1 : this.scale;
     _.each(arguments, function (arg) {
       if (_.isUndefined(arg) || _.isNaN(arg) || _.isNull(arg) || arg < 0) {
-        log.error('x:' + x + ' y:' + y + ' w:' + w + ' h:' + h + ' dx:' + dx + ' dy:' + dy, true);
+        console.log('x:' + x + ' y:' + y + ' w:' + w + ' h:' + h + ' dx:' + dx + ' dy:' + dy, true);
         throw Error('A problem occured when trying to draw on the canvas');
       }
     });

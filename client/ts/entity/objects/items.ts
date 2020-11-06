@@ -1,4 +1,4 @@
-import {Types} from '../../../../shared/ts/gametypes';
+import {Types} from '../../gametypes';
 import {Item} from './item';
 
 

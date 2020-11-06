@@ -1,5 +1,5 @@
 import {Entity} from '../entity';
-import {Types} from '../../../../shared/ts/gametypes';
+import {Types} from '../../gametypes';
 
 export class Item extends Entity {
 

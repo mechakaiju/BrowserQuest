@@ -1,5 +1,5 @@
 import {Character} from '../character';
-import {Types} from '../../../../../shared/ts/gametypes';
+import {Types} from '../../../gametypes';
 import {Exceptions} from '../../../exceptions';
 import {log} from '../../../lib/log';
 
@@ -62,7 +62,7 @@ export class Player extends Character {
         }
       }
 
-      log.info('Player ' + this.id + ' has looted ' + item.id);
+      console.info('Player ' + this.id + ' has looted ' + item.id);
       if (Types.isArmor(item.kind) && this.invincible) {
         this.stopInvincibility();
       }

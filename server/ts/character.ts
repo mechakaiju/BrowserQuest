@@ -85,7 +85,7 @@ export abstract class Character extends Entity {
   removeAttacker(entity) {
     if (entity && entity.id in this.attackers) {
       delete this.attackers[entity.id];
-      log.debug(this.id + " REMOVED ATTACKER " + entity.id);
+      console.log(this.id + " REMOVED ATTACKER " + entity.id);
     }
   }
 

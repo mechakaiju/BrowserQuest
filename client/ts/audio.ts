@@ -24,7 +24,7 @@ export class AudioManager {
 
     var loadSoundFiles = function () {
       var counter = _.size(self.soundNames);
-      log.info('Loading sound files...');
+      console.info('Loading sound files...');
       _.each(self.soundNames, function (name) {
         self.loadSound(name, function () {
           counter -= 1;
@@ -39,7 +39,7 @@ export class AudioManager {
 
     var loadMusicFiles = function () {
       if (!self.game.renderer.mobile) { // disable music on mobile devices
-        log.info('Loading music files...');
+        console.info('Loading music files...');
         // Load the village music first, as players always start here
         self.loadMusic(self.musicNames.shift(), function () {
           // Then, load all the other music files
@@ -87,7 +87,7 @@ export class AudioManager {
       }
     }, false);
     sound.addEventListener('error', function (e) {
-      log.error('Error: ' + path + ' could not be loaded.');
+      console.log('Error: ' + path + ' could not be loaded.');
       self.sounds[name] = null;
     }, false);
 
