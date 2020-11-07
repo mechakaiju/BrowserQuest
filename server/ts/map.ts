@@ -29,7 +29,7 @@ export class Map {
 
     fs.exists(filepath, function (exists) {
       if (!exists) {
-        log.error(filepath + ' doesnt exist.');
+        console.log(filepath + ' doesnt exist.');
         return;
       }
 

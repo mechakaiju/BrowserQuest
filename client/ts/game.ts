@@ -1874,11 +1874,10 @@ export class Game {
       && !this.hoveringCollidingTile
       && !this.hoveringPlateauTile) {
       entity = this.getEntityAt(pos.x, pos.y);
-
       if (entity instanceof Mob) {
         this.makePlayerAttack(entity);
       }
-      else if (entity instanceof Item) {
+      else if (entity instanceof Item && !(entity instanceof Chest)) {
         this.makePlayerGoToItem(entity);
       }
       else if (entity instanceof Npc) {
@@ -1889,6 +1888,7 @@ export class Game {
         }
       }
       else if (entity instanceof Chest) {
+        this.makePlayerGoToItem(entity);
         this.makePlayerOpenChest(entity);
       }
       else {

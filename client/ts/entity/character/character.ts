@@ -46,7 +46,7 @@ export class Character extends Entity {
   attackCooldown: Timer;
   hurting;
 
-  // Callbacs
+  // Callbacks
   request_path_callback;
   start_pathing_callback;
   stop_pathing_callback;
@@ -149,7 +149,6 @@ export class Character extends Entity {
     }
     else {
       var path = this.requestPathfindingTo(x, y);
-
       this.followPath(path);
     }
   }

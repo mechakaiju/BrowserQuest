@@ -81,7 +81,7 @@ export class AudioManager {
 
     sound.addEventListener('canplaythrough', function (e) {
       // this.removeEventListener('canplaythrough', arguments.callee, false);
-      log.debug(path + ' is ready to play.');
+      console.log(path + ' is ready to play.');
       if (loaded_callback) {
         loaded_callback();
       }

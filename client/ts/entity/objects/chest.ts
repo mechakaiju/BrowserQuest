@@ -6,7 +6,7 @@ export class Chest extends Item {
   open_callback;
 
   constructor(id, kind?) {
-    super(id, Types.Entities.CHEST);
+    super(id, Types.Entities.CHEST, 'object');
   }
 
   getSpriteName() {
